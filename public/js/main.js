@@ -46,7 +46,13 @@ function inicializaCronometro() {
 function finalizaJogo() {
     campo.attr('disabled', true);
     campo.toggleClass('campo-desativado');
-    inserePlacar();
+    if (campo.hasClass('borda-verde')) {
+        inserePlacar();
+    } else {
+        alert('Sua frase não está igual!')
+        reiniciaJogo();
+    }
+    
 }
 
 function reiniciaJogo() {
@@ -63,9 +69,9 @@ function reiniciaJogo() {
 };
 
 function inicializaMarcadores() {
-    var frase = $('.frase').text();
-    var digitado = campo.val();
     campo.on('input', function() {
+        var frase = $('.frase').text();
+        var digitado = campo.val();
         if (frase.startsWith(digitado)) {
             campo.addClass("borda-verde");
             campo.removeClass("borda-vermelha");
