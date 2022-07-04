@@ -31,13 +31,14 @@ function inicializaContadores() {
 function inicializaCronometro() {
     var tempoRestante = $('#tempo-digitacao').text();
     campo.one('focus', function() {
-        $('#botao-reiniciar').attr('disabled', true);
+        $('#botao-reiniciar').css("visibility", "hidden");
         var cronometroID = setInterval(function() {
             tempoRestante--;
             $('#tempo-digitacao').text(tempoRestante);
             if (tempoRestante < 1) {
-                clearInterval(cronometroID);
                 finalizaJogo();
+                clearInterval(cronometroID);
+                $("#botao-reiniciar").css("visibility", "visible");
             }
         }, 1000)
     });
